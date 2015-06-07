@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
-class DocumentController extends Controller {
+class DocumentController extends Controller
+{
 
 	/**
 	 * Display a listing of the resource.
@@ -44,7 +45,9 @@ class DocumentController extends Controller {
 	{
 
 		$doc = $repo->find($id);
-		if(!$doc) App::abort(404, 'Not found');
+		if (!$doc) {
+			App::abort(404, 'Not found');
+		}
 		return view('documents.show', ['document' => $doc]);
 	}
 
@@ -58,8 +61,25 @@ class DocumentController extends Controller {
 	public function getEdit($id, DocumentRepository $repo)
 	{
 		$doc = $repo->find($id);
-		if(!$doc) App::abort(404, 'Not found');
+		if (!$doc) {
+			App::abort(404, 'Not found');
+		}
 		return view('documents.edit', ['document' => $doc]);
+	}
+
+	/**
+	 * @param int $id
+	 * @param DocumentRepository $repo
+	 * @return mixed
+	 */
+	public function getDelete($id, DocumentRepository $repo)
+	{
+		$doc = $repo->find($id);
+		if (!$doc) {
+			App::abort(404, 'Not found');
+		}
+		$doc->delete();
+		return Redirect::action('DocumentController@index');
 	}
 
 	/**
@@ -73,7 +93,7 @@ class DocumentController extends Controller {
 	{
 		$doc = Document::findOrNew($id);
 		$doc->content = Input::get('content');
-		$doc->title= Input::get('title');
+		$doc->title = Input::get('title');
 		$doc->save();
 
 		return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
@@ -83,7 +103,7 @@ class DocumentController extends Controller {
 	{
 		$doc = Document::create([]);
 		$doc->content = Input::get('content');
-		$doc->title= Input::get('title');
+		$doc->title = Input::get('title');
 		$doc->save();
 
 		return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
@@ -92,7 +112,7 @@ class DocumentController extends Controller {
 	/**
 	 * Remove the specified resource from storage.
 	 *
-	 * @param  int  $id
+	 * @param  int $id
 	 * @return Response
 	 */
 	public function getDestroy($id)

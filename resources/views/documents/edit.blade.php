@@ -30,7 +30,7 @@
                 </a>
                     </li>
                     <li>
-                <a href="{{ action('DocumentController@getEdit', ['id'=>$document->id]) }}">
+                <a href="{{ action('DocumentController@getDelete', ['id'=>$document->id]) }}">
                     Delete
                 </a>
                     </li>
