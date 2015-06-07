@@ -52,10 +52,7 @@
     }
 </script>
 <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
-{{--<script src="/editor/editor.js"></script>--}}
-{{--<script src="/editor/marked.js"></script>--}}
 <script src="/js/codemirror.js"></script>
-<script src="/js/ot-min.js"></script>
 <script src="/js/app.js"></script>
 
 </body>

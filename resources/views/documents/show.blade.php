@@ -10,11 +10,13 @@
 </div>
 <div class="pure-u-1 pure-u-lg-2-5 pure-u-md-1-5">
     <div class="right-menu">
-        <div class="list lvl-0">
+        <ul class="list lvl-0">
+            <li>
             <a href="{{ action('DocumentController@getEdit', ['id'=>$document->id]) }}">
-                <div class="row">Edit</div>
+                Edit
             </a>
-        </div>
+            </li>
+        </ul>
     </div>
 
 </div>

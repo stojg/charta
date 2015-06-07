@@ -158,15 +158,6 @@ h1 {
     background: transparent;
 }
 
-.right-menu {
-    position: fixed;
-    width: 100%;
-    max-width: 240px;
-    top:16px;
-    /*margin-top: 16px;*/
-    margin-left: 16px;
-}
-
 form {
     width: 100%;
 }
@@ -199,32 +190,23 @@ input:focus
     box-sizing:content-box;
 }
 
+.right-menu {
+    position: fixed;
+    width: 100%;
+    max-width: 240px;
+    top:16px;
+    /*margin-top: 16px;*/
+    margin-left: 16px;
+}
+
 .right-menu,
 .right-menu button,
 .right-menu a {
     color: #fff;
 }
-
 .right-menu button {
     width: 100%;
     text-align: left;
-}
-
-.right-menu .list {
-    background: #C51162;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
-
-}
-
-.right-menu .list .row {
-    background: transparent;
-}
-
-.right-menu .list .row:hover,
-.right-menu .list .row:focus,
-.right-menu .list .row:active
-{
-    background: #F50057;
 }
 
 .flat {
@@ -234,11 +216,22 @@ input:focus
     padding: 0;
 }
 
-.list {
+ul.list {
+
+    margin:0;
+    padding:0;
 }
 
-.list .row {
-    background: #FFF;
+ul.list li {
+    list-style-type: none;
+    position: relative;
+    overflow: hidden;
+}
+
+ul.list li a,
+ul.list li button {
+    display: block;
+    position: relative;
     padding: 8px 8px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     -webkit-transform: translateZ(0);
@@ -246,24 +239,60 @@ input:focus
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
     -webkit-transition-property: color, background-color, padding;
-    transition-property: color, background-color padding;
+    transition-property: color, background-color, padding;
+
+
 }
 
-.list .row:hover,
-.list .row:focus,
-.list .row:active
+ul.list li a:hover,
+ul.list li button:hover,
+ul.list li a:focus,
+ul.list li button:focus,
+ul.list li a:active,
+ul.list li button:active
 {
     padding: 12px 8px;
-    background: #ECEFF1;
+    /*background: #f7f7f7;*/
 }
 
-.list .row.first {
+ul.list li.first {
     padding-top: 16px
 }
 
-.list .row.last {
+ul.list li.last {
     padding-bottom:16px;
     border-bottom: 0;
+}
+
+.right-menu .list {
+    background: #C51162;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.12), 0 1px 1px rgba(0,0,0,0.24);
+}
+
+.ink {
+    display: block;
+    position: absolute;
+    background: rgba(121, 153, 206, 0.05);
+    border-radius: 100%;
+    transform: scale(0);
+}
+
+.ink.animate {
+    animation: ripple 0.35s linear;
+}
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+.right-menu .ink {
+    display: block;
+    position: absolute;
+    background: rgba(255,255,255,0.2);
+    border-radius: 100%;
+    transform: scale(0);
 }
 
 

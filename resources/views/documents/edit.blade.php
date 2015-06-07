@@ -12,32 +12,38 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <fieldset>
                 <input type="text" name="title" value="{{ $document->title }}" placeholder="Title">
-                <textarea rows="20" cols="" name="content">{!! $document->content !!}</textarea>
+                <textarea class='editor' rows="20" cols="" name="content">{!! $document->content !!}</textarea>
             </fieldset>
         </div>
     </div>
     <div class="pure-u-1 pure-u-lg-2-5 pure-u-md-1-5">
         <div class="right-menu">
-            <div class="list lvl-0">
-                <div class="row">
+            <ul class="list lvl-0">
+                <li>
                     <button type="submit" class="flat">Save</button>
-                </div>
+                </li>
 
                 @if ($document->id)
+                    <li>
                 <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
-                    <div class="row">View</div>
+                    View
                 </a>
+                    </li>
+                    <li>
                 <a href="{{ action('DocumentController@getEdit', ['id'=>$document->id]) }}">
-                    <div class="row">Delete</div>
+                    Delete
                 </a>
+                    </li>
                 @else
+                    <li>
                 <a href="{{ action('DocumentController@index') }}">
-                    <div class="row">Cancel</div>
+                    Cancel
                 </a>
+                    </li>
                 @endif
                 </div>
             </div>
-        </div>
+        </ul>
     </div>
 </form>
 @endsection
