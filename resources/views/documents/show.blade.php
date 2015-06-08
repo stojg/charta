@@ -7,6 +7,9 @@
             {!! $document->asHTML() !!}
         </div>
     </div>
+    <div id="comments">
+
+    </div>
 </div>
 <div class="pure-u-1 pure-u-lg-2-5 pure-u-md-1-5">
     <div class="right-menu">

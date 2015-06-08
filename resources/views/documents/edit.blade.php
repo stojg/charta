@@ -12,34 +12,19 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <fieldset>
                 <input type="text" name="title" value="{{ $document->title }}" placeholder="Title">
-                <textarea class='editor' rows="20" cols="" name="content">{!! $document->content !!}</textarea>
+                <textarea class='editor' rows="80" cols="" name="content">{!! $document->content !!}</textarea>
             </fieldset>
         </div>
     </div>
     <div class="pure-u-1 pure-u-lg-2-5 pure-u-md-1-5">
         <div class="right-menu">
-            <ul class="list lvl-0">
-                <li>
-                    <button type="submit" class="flat">Save</button>
-                </li>
-
+            <ul class="list">
+                <li class="first"><button type="submit" class="flat">Save</button></li>
                 @if ($document->id)
-                    <li>
-                <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
-                    View
-                </a>
-                    </li>
-                    <li>
-                <a href="{{ action('DocumentController@getDelete', ['id'=>$document->id]) }}">
-                    Delete
-                </a>
-                    </li>
+                <li><a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">View</a></li>
+                <li class="last"><a href="{{ action('DocumentController@getDelete', ['id'=>$document->id]) }}">Delete</a></li>
                 @else
-                    <li>
-                <a href="{{ action('DocumentController@index') }}">
-                    Cancel
-                </a>
-                    </li>
+                <li class="last"><a href="{{ action('DocumentController@index') }}">Cancel</a></li>
                 @endif
                 </div>
             </div>

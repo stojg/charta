@@ -599,9 +599,6 @@ h1 {
   overflow-y: auto;
   border-right: 1px solid #000000; }
 
-.sidebar h1 {
-  color: #FFFFFF; }
-
 .sidebar ul {
   list-style: none;
   padding: 0;
@@ -615,9 +612,15 @@ h1 {
   .sidebar a:hover {
     color: #607D8B; }
 
+.sidebar h1 {
+  color: #FFFFFF; }
+
 .main .meta {
   color: #B8B8B8;
   float: right; }
+
+.sidebar .box {
+  background: transparent; }
 
 form {
   width: 100%; }
