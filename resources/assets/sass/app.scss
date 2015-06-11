@@ -105,6 +105,12 @@ h1 {
   }
 
   a {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+
+
     color: $color_A200;
     &:hover {
       color: $color_500;
@@ -253,6 +259,13 @@ ul.list {
   button,
   a {
     color: $color_A200;
+
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
 
     &:hover,
     &:active,

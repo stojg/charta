@@ -1517,6 +1517,9 @@ h1 {
     margin: 0; }
 
 .sidebar a {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  transition-duration: 0.3s;
   color: #FF4081; }
   .sidebar a:hover {
     color: #607D8B; }
@@ -1622,7 +1625,11 @@ ul.list {
     width: auto; }
   .toolbar button,
   .toolbar a {
-    color: #FF4081; }
+    color: #FF4081;
+    transition-property: color;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    transition-duration: 0.3s; }
     .toolbar button:hover,
     .toolbar button:active,
     .toolbar button:focus,

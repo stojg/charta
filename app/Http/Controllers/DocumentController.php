@@ -32,6 +32,11 @@ class DocumentController extends Controller
 		return view('documents.trashed', ['documents' => $repo->trashed()]);
 	}
 
+	/**
+	 * @param int $id
+	 * @param DocumentRepository $repo
+	 * @return mixed
+	 */
 	public function getRestore($id, DocumentRepository $repo) {
 		$doc = $repo->find($id, true);
 		if (!$doc) {
@@ -54,7 +59,7 @@ class DocumentController extends Controller
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int $id
+	 * @param int $id
 	 * @param DocumentRepository $repo
 	 * @return Response
 	 */
@@ -111,7 +116,6 @@ class DocumentController extends Controller
 	{
 		$doc = Document::findOrNew($id);
 		$doc->content = Input::get('content');
-		$doc->title = Input::get('title');
 		$doc->save();
 		if ($request->ajax())
 		{
@@ -124,21 +128,9 @@ class DocumentController extends Controller
 	{
 		$doc = Document::create([]);
 		$doc->content = Input::get('content');
-		$doc->title = Input::get('title');
 		$doc->save();
 
 		return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int $id
-	 * @return Response
-	 */
-	public function getDestroy($id)
-	{
-		//
 	}
 
 }
