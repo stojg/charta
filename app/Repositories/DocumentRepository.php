@@ -6,10 +6,17 @@ use App\User;
 class DocumentRepository {
 
 	public function latest($limit = 10) {
-		return Document::limit(10)->latest()->get();
+		return Document::latest()->get();
 	}
 
-	public function find($id) {
-		return Document::find($id);
+	public function find($id, $trashed=false) {
+		if($trashed) {
+			return Document::withTrashed()->where('id', $id);
+		}
+		return $docs = Document::find($id);
+	}
+
+	public function trashed() {
+		return Document::latest()->onlyTrashed()->get();
 	}
 }

@@ -21,7 +21,24 @@ class DocumentController extends Controller
 	 */
 	public function index(DocumentRepository $docs)
 	{
-		return view('documents.index', ['documents' => $docs->latest(10)]);
+		return view('documents.index', ['documents' => $docs->latest()]);
+	}
+
+	/**
+	 * @param DocumentRepository $repo
+	 * @return \Illuminate\View\View
+	 */
+	public function getTrashed(DocumentRepository $repo) {
+		return view('documents.trashed', ['documents' => $repo->trashed()]);
+	}
+
+	public function getRestore($id, DocumentRepository $repo) {
+		$doc = $repo->find($id, true);
+		if (!$doc) {
+			App::abort(404, 'Not found');
+		}
+		$doc->restore();
+		return Redirect::action('DocumentController@getTrashed');
 	}
 
 	/**
@@ -87,15 +104,19 @@ class DocumentController extends Controller
 	 *
 	 * @param  int $id
 	 * @param DocumentRepository $repo
+	 * @param Request $request
 	 * @return Response
 	 */
-	public function postUpdate($id = null, DocumentRepository $repo)
+	public function postUpdate($id = null, DocumentRepository $repo, Request $request)
 	{
 		$doc = Document::findOrNew($id);
 		$doc->content = Input::get('content');
 		$doc->title = Input::get('title');
 		$doc->save();
-
+		if ($request->ajax())
+		{
+			return json_encode(['status' => 'ok']);
+		}
 		return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
 	}
 

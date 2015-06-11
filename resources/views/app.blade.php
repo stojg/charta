@@ -11,32 +11,17 @@
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
     <!--<![endif]-->
-    <link rel="stylesheet" href="{{ elixir("css/app.css") }}">
+{{--    <link rel="stylesheet" href="{{ elixir("css/app.css") }}">--}}
+    <link rel="stylesheet" href="/css/app.css">
 </head>
 
 <body>
 <div id="layout">
-    <div class="sidebar">
-        <div class="left-menu">
-            <h1 class="logo">Charta</h1>
-                @if (Auth::guest())
-                <ul>
-                    <li><a href="{{ url('/') }}">Home</a></li>
-                </ul>
-                @else
-                <ul>
-                    <li><a href="{{ url('/home') }}">Documents</a></li></li>
-                </ul>
-                <ul>
-                    <li><a href="{{ action('DocumentController@getNew') }}">New</a></li>
-                    <li><a href="{{ url('/auth/logout') }}">Logout</a></li>
-                </ul>
-                @endif
-        </div>
-    </div>
 
     <div class="main pure-g">
-        @yield('content')
+        <div class="pure-u-md-1-5"></div>
+        <div class="pure-u-1 pure-u-md-3-5">@yield('content')</div>
+        <div class="pure-u-md-1-5"></div>
     </div>
 
 </div>
@@ -47,14 +32,6 @@
     }
 </script>
 
-<script src="/js/codemirror.js"></script>
-<script src="/js/markdown/markdown.js"></script>
-<script src="/js/highlight.min.js"></script>
-<script src="/react-0.13.3/build/react.js"></script>
-<script src="{{ elixir("js/app.js") }}"></script>
-
-{{--<script src="/js/comments.js">--}}
-
-</script>
+<script src="/js/all.js"></script>
 </body>
 </html>

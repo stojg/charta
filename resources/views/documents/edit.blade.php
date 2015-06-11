@@ -3,32 +3,29 @@
 @section('content')
 
 @if ($document->id)
-<form action="{{ action('DocumentController@postUpdate', ['id'=>$document->id]) }}" method="post" autocomplete="off">
+<form class='edit' action="{{ action('DocumentController@postUpdate', ['id'=>$document->id]) }}" method="post" autocomplete="off">
 @else
-<form action="{{ action('DocumentController@postCreate') }}" method="post" autocomplete="off">
+<form class='new' action="{{ action('DocumentController@postCreate') }}" method="post" autocomplete="off">
 @endif
-    <div class="pure-u-1 pure-u-lg-3-5 pure-u-md-4-5">
-        <div class="content box">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            <fieldset>
-                <input type="text" name="title" value="{{ $document->title }}" placeholder="Title">
-                <textarea class='editor' rows="80" cols="" name="content">{!! $document->content !!}</textarea>
-            </fieldset>
+    <input type="hidden" class="token" name="_token" value="{{ csrf_token() }}">
+
+    <div class="toolbar">
+        <div class="actions">
+            <button type="submit"><span class="glyphicon glyphicon-floppy-disk"></span></button>
+            @if ($document->id)
+                <a href="{{ action('DocumentController@getDelete', ['id'=>$document->id]) }}"><span class="glyphicon glyphicon-trash"></span></a>
+            @endif
         </div>
+        @if ($document->id)
+        <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+        @else
+            <a href="{{ action('DocumentController@index') }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+        @endif
+        <h3>Charta</h3>
     </div>
-    <div class="pure-u-1 pure-u-lg-2-5 pure-u-md-1-5">
-        <div class="right-menu">
-            <ul class="list">
-                <li class="first"><button type="submit" class="flat">Save</button></li>
-                @if ($document->id)
-                <li><a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">View</a></li>
-                <li class="last"><a href="{{ action('DocumentController@getDelete', ['id'=>$document->id]) }}">Delete</a></li>
-                @else
-                <li class="last"><a href="{{ action('DocumentController@index') }}">Cancel</a></li>
-                @endif
-                </div>
-            </div>
-        </ul>
+
+    <div class="content box">
+        <textarea class='editor content' rows="10" name="content">{!! $document->content !!}</textarea>
     </div>
 </form>
 @endsection

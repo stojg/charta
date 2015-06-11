@@ -1,27 +1,31 @@
 @extends('app')
 
 @section('content')
-<div class="pure-u-1 pure-u-lg-3-5 pure-u-md-4-5">
+    <div class="toolbar">
+        <div class="actions">
+            <a href="{{ action('DocumentController@getNew') }}">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+            </a>
+            <a href="{{ action('DocumentController@getTrashed') }}">
+                <span class="glyphicon glyphicon-folder-open"></span>
+            </a>
+        </div>
+        <span class="glyphicon glyphicon-home"></span> <h3>Charta</h3>
+    </div>
+
     <div class="content box">
         <h1>Documents</h1>
-        <ul class="list lvl-0">
-        @foreach ($documents as $index => $document)
-            <li>
-                <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
-                    <div class="meta">{{ $document->updated_at->diffForHumans() }}</div>
-                    {{  $document->title }}
-                </a>
-            </li>
-
-                {{--<div class="row @if($index == 0)first @elseif ($index+1==count($documents))last @endif">--}}
-
-
-                    {{--<div class="action"><a href="{{ action('DocumentController@getEdit', ['id'=>$document->id]) }}"><span class="icon-pencil"></span> </a></div>--}}
-
-
-                {{--</div>--}}
-            @endforeach
-        </ul>
+        @if ($documents->count())
+            <ul class="list">
+                @foreach ($documents as $index => $document)
+                    <li class="@if ($document->trashed())trashed @endif">
+                        <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
+                            <div class="meta">{{ $document->updated_at->diffForHumans() }}</div>
+                            {{  $document->getTitle() }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        @endif
     </div>
-</div>
 @endsection

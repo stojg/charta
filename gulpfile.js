@@ -1,16 +1,52 @@
+var gulp = require('gulp');
 var elixir = require('laravel-elixir');
+var react = require('gulp-react');
+var uglify = require('gulp-uglify');
+var concat = require('gulp-concat');
 
-/*
- |--------------------------------------------------------------------------
- | Elixir Asset Management
- |--------------------------------------------------------------------------
- |
- | Elixir provides a clean, fluent API for defining some basic Gulp tasks
- | for your Laravel application. By default, we are compiling the Less
- | file for our application, as well as publishing vendor resources.
- |
- */
+var paths = {
+	jsx: ['resources/assets/jsx/**/*.jsx'],
+	js: ['resources/assets/js/**/*.js'],
+	sass: ['resources/assets/sass/**/*.scss']
+};
 
-elixir(function(mix) {
-    mix.less('app.less');
+gulp.task('jsx', function () {
+	return gulp.src('resources/assets/jsx/*.jsx')
+		.pipe(react())
+		.pipe(gulp.dest('public/js/'));
 });
+
+gulp.task('sass', function () {
+	return elixir(function (mix) {
+		mix.sass('app.scss');
+		//mix.version("css/app.css");
+	});
+});
+
+gulp.task('js', function () {
+	//return elixir(function (mix) {
+		//mix.version("js/all.js");
+	//});
+	return gulp.src([
+		'resources/assets/js/highlight.min.js',
+		'resources/assets/js/codemirror.js',
+		'resources/assets/js/markdown.js',
+		'resources/assets/js/mousetrap.min.js',
+		'resources/assets/js/app.js'
+		])
+		.pipe(concat('all.js'))
+		//.pipe(uglify())
+		.pipe(gulp.dest('public/js/'));
+});
+
+gulp.task('watch', function() {
+	gulp.watch(paths.jsx, ['jsx']);
+	gulp.watch(paths.sass, ['sass']);
+	gulp.watch(paths.js, ['js']);
+});
+
+gulp.task('default', ['jsx', 'sass', 'js']);
+
+
+
+
