@@ -17,11 +17,11 @@
             @endif
         </div>
         @if ($document->id)
-        <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+            <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span> <h3 class="logo">Charta</h3></a>
         @else
-            <a href="{{ action('DocumentController@index') }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
+            <a href="{{ action('DocumentController@index') }}" class="back"><span class="glyphicon glyphicon-circle-arrow-left"></span> <h3 class="logo">Charta</h3></a>
         @endif
-        <h3>Charta</h3>
+
     </div>
 
     <div class="content box">

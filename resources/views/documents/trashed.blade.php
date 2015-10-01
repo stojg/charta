@@ -3,8 +3,7 @@
 @section('content')
 
     <div class="toolbar">
-
-        <a href="/"><i class="glyphicon glyphicon-circle-arrow-left"></i></a> <h3>Charta</h3>
+        <a href="/" class="back"><span class="glyphicon glyphicon-home"></span> <h3 class="logo">Charta</h3></a>
     </div>
 
     <div class="content box">

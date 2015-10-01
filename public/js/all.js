@@ -9580,6 +9580,13 @@ typeof define&&define.amd&&define(function(){return c})})(window,document);
 			}
 		});
 
+		Mousetrap.bind('esc', function() {
+			var url = $("a.back").attr('href');
+			if(typeof url !== 'undefined') {
+				window.location.href = url;
+			}
+		});
+
 		if($("textarea.editor").length == 1) {
 
 			var cm = CodeMirror.fromTextArea($('textarea').get(0), {
@@ -9590,7 +9597,15 @@ typeof define&&define.amd&&define(function(){return c})})(window,document);
 				lineNumbers: false,
 				autofocus: true,
 				lineWrapping: true,
-				viewportMargin: Infinity
+				viewportMargin: Infinity,
+				extraKeys: {
+					"Esc": function() {
+						var url = $("a.back").attr('href');
+						if(typeof url !== 'undefined') {
+							window.location.href = url;
+						}
+					}
+				}
 			});
 
 			cm.on("change", function(cm, change) {

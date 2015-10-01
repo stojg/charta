@@ -1,7 +1,5 @@
 @import "mixins";
 @import "codemirror";
-@import "codemirror-paper";
-@import "icomoon";
 @import "zenburn";
 @import "fonts";
 @import "colors";
@@ -24,35 +22,22 @@ pre {
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
-#layout {
-  //  padding-left: 196px;
-  //  position: relative;
-//  margin:0 auto;
-}
-
 body {
   background: $page_background;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif;
 }
 
 a {
   color: $color_A400;
   text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color_700;
+  }
 }
 
-a:hover,
-a:focus,
-a:active {
-  color: $color_700;
-}
 
-h1 {
-  font-weight: 100;
-  text-transform: uppercase;
-}
 
 .ink {
   display: block;
@@ -259,34 +244,28 @@ ul.list {
   button,
   a {
     color: $color_A200;
-
-    -webkit-transition-property: color;
-    transition-property: color;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-
-    &:hover,
-    &:active,
-    &:focus {
-      text-decoration: underline;
-      color: $white_full;
-    }
-  }
-
-  button {
-
     text-align: left;
     background: transparent;
     border: 0;
     margin: 0;
     padding: 0;
 
+    .logo {
+      color: $white_full;
+    }
+
     &::-moz-focus-inner {
       border: 0;
       padding: 0;
     }
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $color_100;
+    }
+
+
   }
 
   .actions {

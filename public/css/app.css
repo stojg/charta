@@ -1,7 +1,8 @@
 /* BASICS */
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  font-family: monospace;
+  font-family: Hack, monospace;
+  font-size: 13px;
   height: 300px;
   color: black; }
 
@@ -382,34 +383,6 @@ div.CodeMirror-cursors {
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext {
   background: none; }
-
-@font-face {
-  font-family: 'icomoon';
-  src: url("/fonts/icomoon.eot?q8dsah");
-  src: url("/fonts/icomoon.eot?#iefixq8dsah") format("embedded-opentype"), url("/fonts/icomoon.ttf?q8dsah") format("truetype"), url("/fonts/icomoon.woff?q8dsah") format("woff"), url("/fonts/icomoon.svg?q8dsah#icomoon") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-[class^="icon-"], [class*=" icon-"] {
-  font-family: 'icomoon';
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.icon-pencil:before {
-  content: "\e905"; }
-
-.icon-pencil2:before {
-  content: "\e906"; }
-
-.icon-attachment:before {
-  content: "\e9cd"; }
 
 /*
 
@@ -1453,21 +1426,13 @@ pre {
 body {
   background: #EEEEEE; }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', serif; }
-
 a {
   color: #F50057;
   text-decoration: none; }
-
-a:hover,
-a:focus,
-a:active {
-  color: #455A64; }
-
-h1 {
-  font-weight: 100;
-  text-transform: uppercase; }
+  a:hover,
+  a:focus,
+  a:active {
+    color: #455A64; }
 
 .ink {
   display: block;
@@ -1626,27 +1591,25 @@ ul.list {
   .toolbar button,
   .toolbar a {
     color: #FF4081;
-    transition-property: color;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    transition-duration: 0.3s; }
-    .toolbar button:hover,
-    .toolbar button:active,
-    .toolbar button:focus,
-    .toolbar a:hover,
-    .toolbar a:active,
-    .toolbar a:focus {
-      text-decoration: underline;
-      color: #FFFFFF; }
-  .toolbar button {
     text-align: left;
     background: transparent;
     border: 0;
     margin: 0;
     padding: 0; }
-    .toolbar button::-moz-focus-inner {
+    .toolbar button .logo,
+    .toolbar a .logo {
+      color: #FFFFFF; }
+    .toolbar button::-moz-focus-inner,
+    .toolbar a::-moz-focus-inner {
       border: 0;
       padding: 0; }
+    .toolbar button:hover,
+    .toolbar button:focus,
+    .toolbar button:active,
+    .toolbar a:hover,
+    .toolbar a:focus,
+    .toolbar a:active {
+      color: #CFD8DC; }
   .toolbar .actions {
     float: right;
     margin-top: 2px; }

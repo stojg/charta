@@ -10,19 +10,21 @@
                 <span class="glyphicon glyphicon-folder-open"></span>
             </a>
         </div>
-        <span class="glyphicon glyphicon-home"></span> <h3>Charta</h3>
+        <a href="/" class="back"><span class="glyphicon glyphicon-home"></span> <h3 class="logo">Charta</h3></a>
     </div>
 
     <div class="content box">
         <h1>Documents</h1>
         @if ($documents->count())
+            <?php $a=1; ?>
             <ul class="list">
                 @foreach ($documents as $index => $document)
                     <li class="@if ($document->trashed())trashed @endif">
-                        <a href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
+                        <a tabindex="{{$a}}" href="{{ action('DocumentController@getShow', ['id' => $document->id]) }}">
                             <div class="meta">{{ $document->updated_at->diffForHumans() }}</div>
                             {{  $document->getTitle() }}
                         </a>
+                        <?php $a++; ?>
                     </li>
                 @endforeach
             </ul>
