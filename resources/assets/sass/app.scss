@@ -38,6 +38,9 @@ a {
 }
 
 
+h1 {
+  border-bottom: 1px solid #ddd;
+}
 
 .ink {
   display: block;
@@ -55,51 +58,6 @@ a {
   100% {
     opacity: 0;
     transform: scale(2.5);
-  }
-}
-
-
-.sidebar {
-  margin-left: -160px;
-  width: 176px;
-  position: fixed;
-  top: 0;
-  left: 160px;
-  bottom: 0;
-  z-index: 1000;
-  background: $color_900;
-  overflow-y: auto;
-  border-right: 1px solid $black_full;
-}
-
-.sidebar {
-
-  h1 {
-    color: $white_full;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 32px;
-
-    li {
-      padding: 0;
-      margin: 0;
-    }
-  }
-
-  a {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-transition-duration: 0.3s;
-    transition-duration: 0.3s;
-
-
-    color: $color_A200;
-    &:hover {
-      color: $color_500;
-    }
   }
 }
 
@@ -296,18 +254,36 @@ ul.list {
 
 .content {
   margin-top: 16px;
-  p > code {
-    font-size: 0.8em;
-  }
+  padding: 0 32px;
+  //p > code {
+  //  font-size: 0.8em;
+  //}
+}
+
+ul {
+  list-style-type: square;
+}
+
+code {
+  font-family: Hack, monospace;
+  font-size: 0.8em;
+  background: #f7f7f7;
+  padding: 0 3px;
+  color: #dd0000;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
 
 pre {
-    @include material-shadow(2);
+  @include material-shadow(2);
+
+  code {
+    font-size: 1em;
+    border: 0;
+    border-radius: 0;
+  }
 }
 
-pre, code {
-  font-family: Hack, monospace;
-}
 
 .CodeMirror {
   height: auto;

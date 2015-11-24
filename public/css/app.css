@@ -495,7 +495,7 @@ based on dark.css by Ivan Sagalaev
   font-style: normal;
   font-weight: 400;
   src: local("Titillium Web"), local("TitilliumWeb-Regular"), url(http://fonts.gstatic.com/s/titilliumweb/v4/7XUFZ5tgS-tD6QamInJTcSGR3J8a2Jm30YJvJ3tIMOY.woff2) format("woff2");
-  unicode-range: U100-24F, U1E -1EFF, U20A -20AB, U20AD-20CF, U2C 58C 7F, UA720-A7FF; }
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
 
 /* latin */
 @font-face {
@@ -503,7 +503,7 @@ based on dark.css by Ivan Sagalaev
   font-style: normal;
   font-weight: 400;
   src: local("Titillium Web"), local("TitilliumWeb-Regular"), url(http://fonts.gstatic.com/s/titilliumweb/v4/7XUFZ5tgS-tD6QamInJTceHuglUR2dhBxWD-q_ehMME.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
 
 /* latin-ext */
 @font-face {
@@ -511,7 +511,7 @@ based on dark.css by Ivan Sagalaev
   font-style: normal;
   font-weight: 700;
   src: local("Titillium WebBold"), local("TitilliumWeb-Bold"), url(http://fonts.gstatic.com/s/titilliumweb/v4/anMUvcNT0H1YN4FII8wpr6nZAMwsGZpiGJKtVINElMQ.woff2) format("woff2");
-  unicode-range: U100-24F, U1E -1EFF, U20A -20AB, U20AD-20CF, U2C 58C 7F, UA720-A7FF; }
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
 
 /* latin */
 @font-face {
@@ -519,7 +519,7 @@ based on dark.css by Ivan Sagalaev
   font-style: normal;
   font-weight: 700;
   src: local("Titillium WebBold"), local("TitilliumWeb-Bold"), url(http://fonts.gstatic.com/s/titilliumweb/v4/anMUvcNT0H1YN4FII8wpr8hG3LOB74UqS1hPmWaAxzQ.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
 
 /* latin-ext */
 @font-face {
@@ -527,7 +527,7 @@ based on dark.css by Ivan Sagalaev
   font-style: italic;
   font-weight: 400;
   src: local("Titillium WebItalic"), local("TitilliumWeb-Italic"), url(http://fonts.gstatic.com/s/titilliumweb/v4/r9OmwyQxrgzUAhaLET_KOyohs_GVCV93aZwGb7eT-mc.woff2) format("woff2");
-  unicode-range: U100-24F, U1E -1EFF, U20A -20AB, U20AD-20CF, U2C 58C 7F, UA720-A7FF; }
+  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF; }
 
 /* latin */
 @font-face {
@@ -535,7 +535,7 @@ based on dark.css by Ivan Sagalaev
   font-style: italic;
   font-weight: 400;
   src: local("Titillium WebItalic"), local("TitilliumWeb-Italic"), url(http://fonts.gstatic.com/s/titilliumweb/v4/r9OmwyQxrgzUAhaLET_KO04Sq3N3sm-tF9FpL8sHob4.woff2) format("woff2");
-  unicode-range: U0-0FF, U131, U152-153, U2C 6, U2DA, U2DC, U2000-206F, U2074, U20AC, U2212, U2215, UE0FF, UEFFD, UF000; }
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000; }
 
 @font-face {
   font-family: 'Glyphicons Halflings';
@@ -1365,10 +1365,11 @@ body {
 a {
   color: #F50057;
   text-decoration: none; }
-  a:hover,
-  a:focus,
-  a:active {
+  a:hover, a:focus, a:active {
     color: #455A64; }
+
+h1 {
+  border-bottom: 1px solid #ddd; }
 
 .ink {
   display: block;
@@ -1393,37 +1394,6 @@ a {
     opacity: 0;
     -webkit-transform: scale(2.5);
             transform: scale(2.5); } }
-
-.sidebar {
-  margin-left: -160px;
-  width: 176px;
-  position: fixed;
-  top: 0;
-  left: 160px;
-  bottom: 0;
-  z-index: 1000;
-  background: #263238;
-  overflow-y: auto;
-  border-right: 1px solid #000000; }
-
-.sidebar h1 {
-  color: #FFFFFF; }
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 32px; }
-  .sidebar ul li {
-    padding: 0;
-    margin: 0; }
-
-.sidebar a {
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  transition-duration: 0.3s;
-  color: #FF4081; }
-  .sidebar a:hover {
-    color: #607D8B; }
 
 .meta {
   color: #727272;
@@ -1501,9 +1471,7 @@ ul.list {
     transform: translateZ(0);
     transition-duration: 0.3s;
     transition-property: padding; }
-    ul.list a:hover,
-    ul.list a:focus,
-    ul.list a:active,
+    ul.list a:hover, ul.list a:focus, ul.list a:active,
     ul.list button:hover,
     ul.list button:focus,
     ul.list button:active {
@@ -1539,9 +1507,7 @@ ul.list {
     .toolbar a::-moz-focus-inner {
       border: 0;
       padding: 0; }
-    .toolbar button:hover,
-    .toolbar button:focus,
-    .toolbar button:active,
+    .toolbar button:hover, .toolbar button:focus, .toolbar button:active,
     .toolbar a:hover,
     .toolbar a:focus,
     .toolbar a:active {
@@ -1564,15 +1530,27 @@ ul.list {
   padding: 8px; }
 
 .content {
-  margin-top: 16px; }
-  .content p > code {
-    font-size: 0.8em; }
+  margin-top: 16px;
+  padding: 0 32px; }
+
+ul {
+  list-style-type: square; }
+
+code {
+  font-family: Hack, monospace;
+  font-size: 0.8em;
+  background: #f7f7f7;
+  padding: 0 3px;
+  color: #dd0000;
+  border: 1px solid #ddd;
+  border-radius: 3px; }
 
 pre {
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); }
-
-pre, code {
-  font-family: Hack, monospace; }
+  pre code {
+    font-size: 1em;
+    border: 0;
+    border-radius: 0; }
 
 .CodeMirror {
   height: auto; }
