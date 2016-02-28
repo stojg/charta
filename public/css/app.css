@@ -1,8 +1,7 @@
 /* BASICS */
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
-  font-family: Hack, monospace;
-  font-size: 13px;
+  font-family: monospace;
   height: 300px;
   color: black; }
 
@@ -39,42 +38,41 @@
   color: #999; }
 
 /* CURSOR */
-.CodeMirror div.CodeMirror-cursor {
-  border-left: 1px solid black; }
+.CodeMirror-cursor {
+  border-left: 1px solid black;
+  border-right: none;
+  width: 0; }
 
 /* Shown when moving in bi-directional text */
 .CodeMirror div.CodeMirror-secondarycursor {
   border-left: 1px solid silver; }
 
-.CodeMirror.cm-fat-cursor div.CodeMirror-cursor {
+.cm-fat-cursor .CodeMirror-cursor {
   width: auto;
   border: 0;
   background: #7e7; }
 
-.CodeMirror.cm-fat-cursor div.CodeMirror-cursors {
+.cm-fat-cursor div.CodeMirror-cursors {
   z-index: 1; }
 
 .cm-animate-fat-cursor {
   width: auto;
   border: 0;
   -webkit-animation: blink 1.06s steps(1) infinite;
-  animation: blink 1.06s steps(1) infinite; }
+  animation: blink 1.06s steps(1) infinite;
+  background-color: #7e7; }
 
 @-webkit-keyframes blink {
-  0% {
-    background: #7e7; }
+  0% { }
   50% {
-    background: none; }
-  100% {
-    background: #7e7; } }
+    background-color: transparent; }
+  100% { } }
 
 @keyframes blink {
-  0% {
-    background: #7e7; }
+  0% { }
   50% {
-    background: none; }
-  100% {
-    background: #7e7; } }
+    background-color: transparent; }
+  100% { } }
 
 /* Can style cursor different in overwrite (non-insert) mode */
 .cm-tab {
@@ -86,6 +84,30 @@
   position: absolute; }
 
 /* DEFAULT THEME */
+.cm-s-default .cm-header {
+  color: blue; }
+
+.cm-s-default .cm-quote {
+  color: #090; }
+
+.cm-negative {
+  color: #d44; }
+
+.cm-positive {
+  color: #292; }
+
+.cm-header, .cm-strong {
+  font-weight: bold; }
+
+.cm-em {
+  font-style: italic; }
+
+.cm-link {
+  text-decoration: underline; }
+
+.cm-strikethrough {
+  text-decoration: line-through; }
+
 .cm-s-default .cm-keyword {
   color: #708; }
 
@@ -131,35 +153,11 @@
 .cm-s-default .cm-attribute {
   color: #00c; }
 
-.cm-s-default .cm-header {
-  color: blue; }
-
-.cm-s-default .cm-quote {
-  color: #090; }
-
 .cm-s-default .cm-hr {
   color: #999; }
 
 .cm-s-default .cm-link {
   color: #00c; }
-
-.cm-negative {
-  color: #d44; }
-
-.cm-positive {
-  color: #292; }
-
-.cm-header, .cm-strong {
-  font-weight: bold; }
-
-.cm-em {
-  font-style: italic; }
-
-.cm-link {
-  text-decoration: underline; }
-
-.cm-strikethrough {
-  text-decoration: line-through; }
 
 .cm-s-default .cm-error {
   color: #f00; }
@@ -209,7 +207,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   border-right: 30px solid transparent; }
 
 /* The fake, visible scrollbars. Used to force redraw during scrolling
-   before actuall scrolling happens, thus preventing shaking and
+   before actual scrolling happens, thus preventing shaking and
    flickering artifacts. */
 .CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
   position: absolute;
@@ -246,6 +244,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   white-space: normal;
   height: 100%;
   display: inline-block;
+  vertical-align: top;
   margin-bottom: -30px;
   /* Hack to make IE7 behave */
   *zoom: 1;
@@ -254,7 +253,14 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror-gutter-wrapper {
   position: absolute;
   z-index: 4;
-  height: 100%; }
+  background: none !important;
+  border: none !important; }
+
+.CodeMirror-gutter-background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 4; }
 
 .CodeMirror-gutter-elt {
   position: absolute;
@@ -325,18 +331,19 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   overflow: hidden;
   visibility: hidden; }
 
+.CodeMirror-cursor {
+  position: absolute; }
+
 .CodeMirror-measure pre {
   position: static; }
-
-.CodeMirror div.CodeMirror-cursor {
-  position: absolute;
-  border-right: none;
-  width: 0; }
 
 div.CodeMirror-cursors {
   visibility: hidden;
   position: relative;
   z-index: 3; }
+
+div.CodeMirror-dragcursors {
+  visibility: visible; }
 
 .CodeMirror-focused div.CodeMirror-cursors {
   visibility: visible; }
@@ -350,13 +357,13 @@ div.CodeMirror-cursors {
 .CodeMirror-crosshair {
   cursor: crosshair; }
 
-.CodeMirror ::-moz-selection {
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection {
   background: #d7d4f0; }
 
-.CodeMirror ::selection {
+.CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection {
   background: #d7d4f0; }
 
-.CodeMirror ::-moz-selection {
+.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection {
   background: #d7d4f0; }
 
 .cm-searching {
@@ -1345,19 +1352,6 @@ html, button, input, select, textarea, .pure-g [class*="pure-u"] {
 
 html {
   color: #212121; }
-
-pre {
-  font-size: 0.8em;
-  white-space: pre-wrap;
-  /* css-3 */
-  white-space: -moz-pre-wrap;
-  /* Mozilla, since 1999 */
-  white-space: -pre-wrap;
-  /* Opera 4-6 */
-  white-space: -o-pre-wrap;
-  /* Opera 7 */
-  word-wrap: break-word;
-  /* Internet Explorer 5.5+ */ }
 
 body {
   background: #EEEEEE; }

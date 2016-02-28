@@ -65,7 +65,7 @@
 
 			var cm = CodeMirror.fromTextArea($('textarea').get(0), {
 				mode: 'markdown',
-				theme: 'paper',
+				//theme: 'paper',
 				tabSize: '4',
 				indentWithTabs: true,
 				lineNumbers: false,
