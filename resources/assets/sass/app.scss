@@ -13,15 +13,6 @@ html {
   color: $black_text;
 }
 
-//pre {
-//  font-size: 0.8em;
-//  white-space: pre-wrap;       /* css-3 */
-//  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-//  white-space: -pre-wrap;      /* Opera 4-6 */
-//  white-space: -o-pre-wrap;    /* Opera 7 */
-//  word-wrap: break-word;       /* Internet Explorer 5.5+ */
-//}
-
 body {
   background: $page_background;
 }
@@ -271,14 +262,33 @@ code {
   border-radius: 3px;
 }
 
-pre {
-  @include material-shadow(2);
+.view {
 
-  code {
-    font-size: 1em;
-    border: 0;
-    border-radius: 0;
+  blockquote {
+    @include material-shadow(2);
+    background: #f0f0f0;
+    margin:0;
+    padding: 0.5em 1em;
+    //border: 1px solid #e0e0e0;
   }
+
+  pre {
+    @include material-shadow(2);
+
+    font-size: 0.8em;
+    white-space: pre-wrap;       /* css-3 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+    code {
+      font-size: 1em;
+      border: 0;
+      border-radius: 0;
+    }
+  }
+
 }
 
 .CodeMirror {

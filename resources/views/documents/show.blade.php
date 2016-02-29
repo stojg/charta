@@ -10,7 +10,7 @@
         <a href="/" class="back"><span class="glyphicon glyphicon-home"></span> <h3 class="logo">Charta</h3></a>
     </div>
 
-    <div class="content box">
+    <div class="content box view">
         {!! $document->asHTML() !!}
     </div>
 @endsection

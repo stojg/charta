@@ -24,7 +24,7 @@
 
     </div>
 
-    <div class="content box">
+    <div class="content box edit">
         <textarea class='editor content' rows="10" name="content">{!! $document->content !!}</textarea>
     </div>
 </form>
