@@ -271,7 +271,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-      user-select: none; }
+  user-select: none; }
 
 .CodeMirror-lines {
   cursor: text;
@@ -1371,23 +1371,22 @@ h1 {
   background: rgba(121, 153, 206, 0.05);
   border-radius: 100%;
   -webkit-transform: scale(0);
-      -ms-transform: scale(0);
-          transform: scale(0); }
+  transform: scale(0); }
   .ink.animate {
     -webkit-animation: ripple 0.8s linear;
-            animation: ripple 0.8s linear; }
+    animation: ripple 0.8s linear; }
 
 @-webkit-keyframes ripple {
   100% {
     opacity: 0;
     -webkit-transform: scale(2.5);
-            transform: scale(2.5); } }
+    transform: scale(2.5); } }
 
 @keyframes ripple {
   100% {
     opacity: 0;
     -webkit-transform: scale(2.5);
-            transform: scale(2.5); } }
+    transform: scale(2.5); } }
 
 .meta {
   color: #727272;
@@ -1525,7 +1524,7 @@ ul.list {
 
 .content {
   margin-top: 16px;
-  padding: 0 32px; }
+  padding: 1px 32px 16px 32px; }
 
 ul {
   list-style-type: square; }

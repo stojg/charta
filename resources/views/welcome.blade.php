@@ -1,12 +1,13 @@
 @extends('app')
 
 @section('content')
-<div class="pure-u-1 pure-u-lg-3-5 pure-u-md-4-5">
+    <div class="toolbar">
+        <a href="/" class="back"><span class="glyphicon glyphicon-home"></span> <h3 class="logo">Charta</h3></a>
+    </div>
     <div class="content box">
-        <h1>Documentation</h1>
+        <h1>Welcome</h1>
         <p>
             Please <a href="{{ url('/auth/login') }}">sign in</a> to see and edit content on this site
         </p>
     </div>
-</div>
 @endsection
