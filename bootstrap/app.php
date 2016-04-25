@@ -41,14 +41,14 @@ $app->singleton(
 	'App\Exceptions\Handler'
 );
 
-//$app->configureMonologUsing(function($monolog) {
-//	$client = new Raven_Client('https://671e8dae295c4d0bb4c08a4863184337:a8304cde05ad4c558ebe1cc325821f36@app.getsentry.com/75411');
-//
-//	$handler = new Monolog\Handler\RavenHandler($client);
-//	$handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
-//
-//	$monolog->pushHandler($handler);
-//});
+if(env('GETSENTRY')) {
+	$app->configureMonologUsing(function($monolog) {
+		$client = new Raven_Client(env('GETSENTRY'));
+		$handler = new Monolog\Handler\RavenHandler($client);
+		$handler->setFormatter(new Monolog\Formatter\LineFormatter("%message% %context% %extra%\n"));
+		$monolog->pushHandler($handler);
+	});
+}
 
 /*
 |--------------------------------------------------------------------------
