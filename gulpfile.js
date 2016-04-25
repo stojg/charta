@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var elixir = require('laravel-elixir');
-var react = require('gulp-react');
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 
@@ -9,12 +8,6 @@ var paths = {
 	js: ['resources/assets/js/**/*.js'],
 	sass: ['resources/assets/sass/**/*.scss']
 };
-
-gulp.task('jsx', function () {
-	return gulp.src('resources/assets/jsx/*.jsx')
-		.pipe(react())
-		.pipe(gulp.dest('public/js/'));
-});
 
 gulp.task('sass', function () {
 	return elixir(function (mix) {
@@ -45,7 +38,7 @@ gulp.task('watch', function() {
 	gulp.watch(paths.js, ['js']);
 });
 
-gulp.task('default', ['jsx', 'sass', 'js']);
+gulp.task('default', ['sass', 'js']);
 
 
 

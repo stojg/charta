@@ -25,7 +25,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://charta.dev',
+	'url' => 'http://charta.app',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -112,12 +112,9 @@ return [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
-		'Illuminate\Bus\BusServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
 		'Illuminate\Encryption\EncryptionServiceProvider',
@@ -134,18 +131,17 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
 
 		/*
 		 * Application Service Providers...
 		 */
 		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
-		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
 
 		// Extra
-		'Laravel\Socialite\SocialiteServiceProvider',
+		Laravel\Socialite\SocialiteServiceProvider::class,
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 	],
@@ -196,7 +192,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		// Extra Aliases
-		'Socialite' => 'Laravel\Socialite\Facades\Socialite',
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 		'Markdown'  => 'GrahamCampbell\Markdown\Facades\Markdown',
 
 	],
