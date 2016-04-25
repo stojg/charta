@@ -3,38 +3,40 @@
 use App\Document;
 use App\Http\Requests;
 
-use App\Repositories\DocumentRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 
 class DocumentController extends Controller
 {
 
+    protected $user;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->user = Auth::User();
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param DocumentRepository $docs
      * @return \Illuminate\View\View
      */
-    public function index(DocumentRepository $docs)
+    public function index()
     {
-        return view('documents.index', ['documents' => $docs->latest()]);
+        return view('documents.index', ['documents' => Document::byUser($this->user)->latest()->get()]);
     }
 
     /**
-     * @param DocumentRepository $repo
      * @return \Illuminate\View\View
      */
-    public function getTrashed(DocumentRepository $repo)
+    public function getTrashed()
     {
-        return view('documents.trashed', ['documents' => $repo->trashed()]);
+        return view('documents.trashed',
+            ['documents' => Document::byUser($this->user)->latest()->onlyTrashed()->get()]);
     }
 
     /**
@@ -42,9 +44,9 @@ class DocumentController extends Controller
      * @param DocumentRepository $repo
      * @return mixed
      */
-    public function getRestore($id, DocumentRepository $repo)
+    public function getRestore($id)
     {
-        $doc = $repo->find($id, true);
+        $doc = Document::byUser($this->user)->withTrashed()->where('id', $id);
         if (!$doc) {
             App::abort(404, 'Not found');
         }
@@ -66,13 +68,12 @@ class DocumentController extends Controller
      * Display the specified resource.
      *
      * @param int $id
-     * @param DocumentRepository $repo
      * @return Response
      */
-    public function getShow($id, DocumentRepository $repo)
+    public function getShow($id)
     {
 
-        $doc = $repo->find($id);
+        $doc = Document::byUser($this->user)->find($id);
         if (!$doc) {
             App::abort(404, 'Not found');
         }
@@ -83,12 +84,11 @@ class DocumentController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int $id
-     * @param DocumentRepository $repo
      * @return Response
      */
-    public function getEdit($id, DocumentRepository $repo)
+    public function getEdit($id)
     {
-        $doc = $repo->find($id);
+        $doc = Document::byUser($this->user)->find($id);
         if (!$doc) {
             App::abort(404, 'Not found');
         }
@@ -97,12 +97,11 @@ class DocumentController extends Controller
 
     /**
      * @param int $id
-     * @param DocumentRepository $repo
      * @return mixed
      */
-    public function getDelete($id, DocumentRepository $repo)
+    public function getDelete($id)
     {
-        $doc = $repo->find($id);
+        $doc = Document::byUser($this->user)->find($id);
         if (!$doc) {
             App::abort(404, 'Not found');
         }
@@ -114,13 +113,14 @@ class DocumentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int $id
-     * @param DocumentRepository $repo
      * @param Request $request
      * @return Response
      */
-    public function postUpdate($id = null, DocumentRepository $repo, Request $request)
+    public function postUpdate($id = null, Request $request)
     {
-        $doc = Document::findOrNew($id);
+
+        $doc = Document::byUser($this->user)->findOrNew($id);
+        $doc->creator = $this->user->email;
         $doc->content = Input::get('content');
         $doc->save();
         if ($request->ajax()) {
@@ -129,10 +129,11 @@ class DocumentController extends Controller
         return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
     }
 
-    public function postCreate(DocumentRepository $repo)
+    public function postCreate()
     {
         $doc = Document::create([]);
         $doc->content = Input::get('content');
+        $doc->creator = $this->user->email;
         $doc->save();
 
         return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();

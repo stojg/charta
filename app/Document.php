@@ -14,6 +14,10 @@ class Document extends Model {
 		return $query->orderBy('updated_at', 'desc');
 	}
 
+	public function scopeByUser($query, User $user) {
+		return $query->where('creator', $user->email);
+	}
+
 	public function asHTML() {
 		return Markdown::convertToHtml($this->content);
 	}
