@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Http\Request;
 
+use Socialite;
+
 class AuthController extends Controller {
 
 	/*
@@ -46,6 +48,28 @@ class AuthController extends Controller {
 	public function userHasLoggedIn($user) {
 		\Session::flash('message', 'Welcome, ' . $user->username);
 		return redirect('/home');
+	}
+
+	/**
+	 * Redirect the user to the GitHub authentication page.
+	 *
+	 * @return Response
+	 */
+	public function redirectToProvider()
+	{
+		return Socialite::driver('github')->redirect();
+	}
+
+	/**
+	 * Obtain the user information from GitHub.
+	 *
+	 * @return Response
+	 */
+	public function handleProviderCallback()
+	{
+		$user = Socialite::driver('github')->user();
+
+		// $user->token;
 	}
 
 }
