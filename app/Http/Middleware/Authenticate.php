@@ -16,7 +16,6 @@ class Authenticate {
 	 * Create a new filter instance.
 	 *
 	 * @param  Guard  $auth
-	 * @return void
 	 */
 	public function __construct(Guard $auth)
 	{
@@ -26,9 +25,9 @@ class Authenticate {
 	/**
 	 * Handle an incoming request.
 	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
+	 * @param  \Illuminate\Http\Request $request
+	 * @param  \Closure $next
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
 	public function handle($request, Closure $next)
 	{
@@ -40,7 +39,7 @@ class Authenticate {
 			}
 			else
 			{
-				return redirect()->guest('auth/login');
+				return redirect()->guest('signin');
 			}
 		}
 

@@ -7,7 +7,7 @@
     <div class="content box">
         <h1>Welcome</h1>
         <p>
-            Please <a href="{{ url('/auth/login') }}">sign in</a> to see and edit content on this site
+            Please <a href="{{ url('/signin') }}">sign in</a> to see and edit content on this site
         </p>
     </div>
 @endsection

@@ -35,10 +35,4 @@ return [
 		'secret' => '',
 	],
 
-	'github' => [
-		'client_id' => 'fd198d706008681a7cf4',
-		'client_secret' => 'b17a50bcdc8a7a392f768a40b2150263f7214f47',
-		'redirect' => 'http://charta.app/login/github',
-	],
-
 ];

@@ -1,75 +1,71 @@
 <?php namespace App\Http\Controllers\Auth;
 
-use App\AuthenticateUser;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-use Illuminate\Http\Request;
 
-use Socialite;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use SocialAuth;
+use SocialNorm\Exceptions\ApplicationRejectedException;
+use SocialNorm\Exceptions\InvalidAuthorizationCodeException;
 
-class AuthController extends Controller {
+class AuthController extends Controller
+{
 
-	/*
-	|--------------------------------------------------------------------------
-	| Registration & Login Controller
-	|--------------------------------------------------------------------------
-	|
-	| This controller handles the registration of new users, as well as the
-	| authentication of existing users. By default, this controller uses
-	| a simple trait to add these behaviors. Why don't you explore it?
-	|
-	*/
+    /**
+     * Create a new authentication controller instance.
+     *
+     */
+    public function __construct()
+    {
+        $this->middleware('guest', ['except' => 'logout']);
+    }
 
-	use AuthenticatesAndRegistersUsers;
+    public function signin() {
+        return view('auth.signin');
+    }
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 */
-	public function __construct()
-	{
-		$this->middleware('guest', ['except' => 'getLogout']);
-	}
+    /**
+     * @param string $provider
+     */
+    public function authorize($provider = null)
+    {
+        return SocialAuth::authorize($provider);
+    }
 
-	/**
-	 * @param AuthenticateUser $authenticateUser
-	 * @param Request $request
-	 * @param null $provider
-	 * @return \Symfony\Component\HttpFoundation\RedirectResponse
-	 */
-	public function login(AuthenticateUser $authenticateUser, Request $request, $provider = null) {
-		return $authenticateUser->execute($request->all(), $this, $provider);
-	}
+    /**
+     * @param string $provider
+     */
+    public function login($provider = null)
+    {
 
-	/**
-	 * @param $user
-	 * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-	 */
-	public function userHasLoggedIn($user) {
-		\Session::flash('message', 'Welcome, ' . $user->username);
-		return redirect('/home');
-	}
+        try {
+            SocialAuth::login($provider, function($user, $details) use($provider) {
+                $user->username = $details->nickname;
+                $user->name = $details->full_name;
+                $user->email = $details->email;
+                $user->avatar = $details->avatar;
+                $user->provider = $provider;
+                $user->save();
+            });
+        } catch (ApplicationRejectedException $e) {
+            // User rejected application
+            die('You rejected the permission');
+        } catch (InvalidAuthorizationCodeException $e) {
+            // Authorization was attempted with invalid
+            // code,likely forgery attempt
+            die('could not validate the authentication');
+        }
+        return Redirect::intended();
+    }
 
-	/**
-	 * Redirect the user to the GitHub authentication page.
-	 *
-	 * @return Response
-	 */
-	public function redirectToProvider()
-	{
-		return Socialite::driver('github')->redirect();
-	}
+    public function logout() {
+        Auth::logout();
 
-	/**
-	 * Obtain the user information from GitHub.
-	 *
-	 * @return Response
-	 */
-	public function handleProviderCallback()
-	{
-		$user = Socialite::driver('github')->user();
+        return redirect()->action('WelcomeController@index');
+    }
 
-		// $user->token;
-	}
+
+
+
 
 }

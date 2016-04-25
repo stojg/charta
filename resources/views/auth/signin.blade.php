@@ -16,6 +16,6 @@
             </ul>
         </div>
         @endif
-        <a href="/login/github">Sign in with github</a>
+        <a href="/authorize/github">Sign in with github</a>
     </div>
 @endsection

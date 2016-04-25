@@ -141,7 +141,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
 		// Extra
-		Laravel\Socialite\SocialiteServiceProvider::class,
+		'AdamWathan\EloquentOAuthL5\EloquentOAuthServiceProvider',
 		'GrahamCampbell\Markdown\MarkdownServiceProvider',
 
 	],
@@ -192,7 +192,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		// Extra Aliases
-		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+		'SocialAuth' => 'AdamWathan\EloquentOAuth\Facades\OAuth',
 		'Markdown'  => 'GrahamCampbell\Markdown\Facades\Markdown',
 
 	],

@@ -12,13 +12,14 @@
 */
 
 Route::get('/', 'WelcomeController@index');
-
 Route::get('home', 'DocumentController@index');
 
+Route::get('signin', 'Auth\AuthController@signin');
+Route::get('authorize/{provider?}', 'Auth\AuthController@authorize');
 Route::get('login/{provider?}', 'Auth\AuthController@login');
+Route::get('logout', 'Auth\AuthController@logout');
+
 
 Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
 	'document' => 'DocumentController'
 ]);
