@@ -131,10 +131,11 @@ class DocumentController extends Controller
 
     public function postCreate()
     {
-        $doc = Document::create([]);
-        $doc->content = Input::get('content');
-        $doc->creator = $this->user->email;
-        $doc->save();
+
+        $doc = Document::create([
+            'content' => Input::get('content'),
+            'creator' => $this->user->email
+        ]);
 
         return Redirect::action('DocumentController@getEdit', $doc->id)->with('message', 'Saved.')->withInput();
     }

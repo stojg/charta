@@ -8,6 +8,13 @@ class Document extends Model {
 
 	use SoftDeletes;
 
+	/**
+	 * The attributes that are mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $fillable = ['content', 'creator'];
+
 	protected $dates = ['deleted_at'];
 
 	public function scopeLatest($query) {
